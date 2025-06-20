@@ -2,15 +2,23 @@ const express = require('express');
 const path = require('path');
 const { spawn } = require('child_process');
 
+console.log('🚀 INICIANDO SLEEP+ ADMIN PRODUCTION SERVER');
+console.log('==========================================');
+console.log(`📅 Timestamp: ${new Date().toISOString()}`);
+console.log(`🔧 NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`🎨 FRONTEND_PORT: ${process.env.FRONTEND_PORT || 5173}`);
+console.log(`🔌 BACKEND_PORT: 3001`);
+console.log('==========================================');
+
 // Start the backend server
-console.log('Starting backend server...');
+console.log('\n🔧 Starting backend server on port 3001...');
 const backend = spawn('node', ['server/server.js'], {
   stdio: 'inherit',
   env: { ...process.env, PORT: '3001' }
 });
 
 backend.on('error', (err) => {
-  console.error('Failed to start backend:', err);
+  console.error('❌ Failed to start backend:', err);
   process.exit(1);
 });
 
@@ -20,13 +28,24 @@ const FRONTEND_PORT = process.env.FRONTEND_PORT || 5173;
 
 // Log incoming requests for debugging
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log(`[FRONTEND ${new Date().toISOString()}] ${req.method} ${req.url}`);
   next();
 });
 
 // Serve static files from the dist directory
 const distPath = path.join(__dirname, '../dist');
-console.log(`Serving static files from: ${distPath}`);
+console.log(`\n📁 Frontend dist path: ${distPath}`);
+
+// Check if dist directory exists
+const fs = require('fs');
+if (fs.existsSync(distPath)) {
+  console.log('✅ Dist directory exists');
+  const files = fs.readdirSync(distPath);
+  console.log(`📋 Files in dist: ${files.slice(0, 5).join(', ')}${files.length > 5 ? '...' : ''}`);
+} else {
+  console.error('❌ ERROR: Dist directory does not exist! Build may have failed.');
+}
+
 app.use(express.static(distPath));
 
 // Health check endpoint
@@ -36,7 +55,8 @@ app.get('/health', (req, res) => {
     server: 'production-server',
     frontend_port: FRONTEND_PORT,
     backend_port: 3001,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    dist_exists: fs.existsSync(distPath)
   });
 });
 
@@ -47,7 +67,7 @@ const axios = require('axios');
 const proxyToBackend = async (req, res) => {
   try {
     const backendUrl = `http://localhost:3001${req.url}`;
-    console.log(`Proxying to backend: ${req.method} ${backendUrl}`);
+    console.log(`[PROXY] ${req.method} ${backendUrl}`);
     
     const config = {
       method: req.method,
@@ -59,7 +79,7 @@ const proxyToBackend = async (req, res) => {
     const response = await axios(config);
     res.status(response.status).json(response.data);
   } catch (error) {
-    console.error('Proxy error:', error.message);
+    console.error('[PROXY ERROR]:', error.message);
     if (error.response) {
       res.status(error.response.status).json(error.response.data);
     } else {
@@ -87,10 +107,10 @@ backendRoutes.forEach(route => {
 // Serve index.html for all other routes (React routing)
 app.get('*', (req, res) => {
   const indexPath = path.join(distPath, 'index.html');
-  console.log(`Serving index.html for route: ${req.url}`);
+  console.log(`[FRONTEND] Serving index.html for route: ${req.url}`);
   res.sendFile(indexPath, (err) => {
     if (err) {
-      console.error('Error serving index.html:', err);
+      console.error('❌ Error serving index.html:', err);
       res.status(404).send('Frontend build not found. Please ensure the application is built.');
     }
   });
@@ -98,17 +118,20 @@ app.get('*', (req, res) => {
 
 // Start frontend server - IMPORTANT: Listen on all interfaces (0.0.0.0)
 const server = app.listen(FRONTEND_PORT, '0.0.0.0', () => {
-  console.log('====================================');
-  console.log(`Frontend server running on port ${FRONTEND_PORT}`);
-  console.log(`Backend server running on port 3001`);
-  console.log(`Listening on all interfaces (0.0.0.0)`);
-  console.log(`Static files path: ${distPath}`);
-  console.log('====================================');
+  console.log('\n✨ ====================================');
+  console.log(`✅ Frontend server is running!`);
+  console.log(`🎨 Frontend URL: http://0.0.0.0:${FRONTEND_PORT}`);
+  console.log(`🔧 Backend URL: http://localhost:3001`);
+  console.log(`📁 Serving files from: ${distPath}`);
+  console.log(`🌐 Listening on all interfaces (0.0.0.0)`);
+  console.log('✨ ====================================\n');
+  console.log('👉 IMPORTANTE: En EasyPanel, el dominio DEBE apuntar al puerto 5173');
+  console.log('✨ ====================================\n');
 });
 
 // Handle process termination
 process.on('SIGINT', () => {
-  console.log('\nShutting down servers...');
+  console.log('\n🛑 Shutting down servers...');
   backend.kill();
   server.close();
   process.exit(0);
@@ -116,7 +139,12 @@ process.on('SIGINT', () => {
 
 // Handle uncaught errors
 process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
+  console.error('💥 Uncaught Exception:', err);
   backend.kill();
   process.exit(1);
 });
+
+// Log every 30 seconds to show the server is still running
+setInterval(() => {
+  console.log(`[HEARTBEAT ${new Date().toISOString()}] Frontend on :${FRONTEND_PORT} | Backend on :3001`);
+}, 30000);
