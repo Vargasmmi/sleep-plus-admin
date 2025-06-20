@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Copy frontend source
 COPY . .
@@ -23,7 +23,7 @@ RUN apk add --no-cache curl
 
 # Copy package files and install production dependencies
 COPY package*.json ./
-RUN npm ci --production
+RUN npm install --omit=dev
 
 # Copy necessary files from project
 COPY server ./server
