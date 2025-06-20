@@ -42,7 +42,8 @@
     "recharts": "^2.12.7",
     "stripe": "^14.17.0",
     "uuid": "^10.0.0",
-    "json-server": "^0.17.4"
+    "json-server": "^0.17.4",
+    "http-proxy-middleware": "^2.0.6"
   },
   "devDependencies": {
     "@types/node": "^20.16.5",
