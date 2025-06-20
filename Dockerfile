@@ -27,14 +27,28 @@ RUN npm ci --omit=dev
 
 # Copy necessary files
 COPY server ./server
-COPY db.json ./
 COPY routes.json ./
 
 # Copy built frontend from builder stage
 COPY --from=frontend-builder /app/dist ./dist
 
+# Create data directory for volume
+RUN mkdir -p /app/data
+
+# Copy initial database file to a different location
+COPY db.json ./db-initial.json
+
+# Create startup script
+RUN echo '#!/bin/sh' > /app/startup.sh && \
+    echo 'if [ ! -f /app/data/db.json ]; then' >> /app/startup.sh && \
+    echo '  cp /app/db-initial.json /app/data/db.json' >> /app/startup.sh && \
+    echo 'fi' >> /app/startup.sh && \
+    echo 'ln -sf /app/data/db.json /app/db.json' >> /app/startup.sh && \
+    echo 'exec node server/production-server.js' >> /app/startup.sh && \
+    chmod +x /app/startup.sh
+
 # Create volume mount point for database
-VOLUME ["app/db.json"]
+VOLUME ["/app/data"]
 
 # Expose ports
 EXPOSE 3001 5173
@@ -49,4 +63,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
   CMD curl -f http://localhost:3001/health || exit 1
 
 # Start the production server
-CMD ["node", "server/production-server.js"]
+CMD ["/app/startup.sh"]
