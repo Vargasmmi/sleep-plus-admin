@@ -1,0 +1,15 @@
+node_modules
+.git
+.gitignore
+.env
+.env.local
+*.log
+dist
+build
+.DS_Store
+*.bat
+test-*.js
+clear-session.html
+test-photo-upload.html
+test-webhook-simple.html
+test-shopify/

@@ -1,0 +1,13 @@
+{
+  "/api/*": "/$1",
+  "/customers/:id/subscriptions": "/subscriptions?customerId=:id",
+  "/customers/:id/evaluations": "/evaluations?customerId=:id",
+  "/customers/:id/calls": "/calls?customerId=:id",
+  "/customers/:id/sales": "/sales?customerId=:id",
+  "/employees/:id/calls": "/calls?userId=:id",
+  "/employees/:id/sales": "/sales?userId=:id",
+  "/employees/:id/commissions": "/commissions?userId=:id",
+  "/stores/:id/employees": "/employees?storeId=:id",
+  "/stores/:id/sales": "/sales?storeId=:id",
+  "/campaigns/:id/calls": "/calls?metadata.campaignId=:id"
+}

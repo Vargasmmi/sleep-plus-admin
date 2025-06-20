@@ -1,0 +1,1 @@
+export { ShopifySettingsPage } from "./settings";

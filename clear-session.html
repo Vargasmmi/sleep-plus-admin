@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpiar Sesión - Sleep+ Admin</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #40a9ff;
+        }
+        .success {
+            color: #52c41a;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sleep+ Admin</h1>
+        <p>Utiliza esta página para limpiar la sesión si tienes problemas para acceder al sistema.</p>
+        <button onclick="clearSession()">Limpiar Sesión</button>
+        <button onclick="goToApp()">Ir a la Aplicación</button>
+        <div class="success" id="successMsg">
+            ✓ Sesión limpiada correctamente
+        </div>
+    </div>
+
+    <script>
+        function clearSession() {
+            localStorage.clear();
+            sessionStorage.clear();
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500);
+        }
+
+        function goToApp() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>

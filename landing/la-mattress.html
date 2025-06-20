@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trade in your old mattress for up to $400 instant credit at LA Mattress. AI-powered evaluation, free pickup, and eco-friendly disposal. Get 10% extra with Sleep+ Elite.">
+    <meta name="keywords" content="mattress trade-in, Los Angeles mattress, instant credit, eco-friendly disposal, Sleep+ Elite">
+    <meta name="author" content="LA Mattress">
+    <meta property="og:title" content="LA Mattress - Trade & Sleep Program | Up to $400 Credit">
+    <meta property="og:description" content="Transform your old mattress into instant savings. Get evaluated in 60 seconds.">
+    <meta property="og:image" content="https://mattressstoreslosangeles.com/trade-preview.jpg">
+    <meta property="og:url" content="https://mattressstoreslosangeles.com/trade">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>LA Mattress - Trade & Sleep Program | Up to $400 Instant Credit</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* LA Mattress Brand Colors */
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --brand-blue: #1B9CD8;
+            --brand-red: #E8374A;
+            --bg-light: #FFFFFF;
+            --bg-gray: #F8F8F8;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --border: #E5E5E5;
+            --success: #00C853;
+            --error: #E8374A;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Minimal Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LA Mattress Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            gap: 0;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-mark {
+            width: 50px;
+            height: 40px;
+            background: #1B9CD8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 3px;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            background: #E8374A;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            margin-left: 20px;
+        }
+
+        .logo-la {
+            color: white;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--brand-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: #1476A8;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section - Minimalist */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 2rem 4rem;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        /* Subtle Background Pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(27, 156, 216, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(232, 55, 74, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Left Column - Bold Typography */
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-gray);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Value Proposition */
+        .value-props {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .value-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .value-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* CTA Button */
+        .hero-cta {
+            display: inline-block;
+            background: var(--brand-blue);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta:hover {
+            background: #1476A8;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-cta:active {
+            transform: translateY(0);
+        }
+
+        /* Trust Indicators */
+        .trust-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .trust-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--success);
+        }
+
+        /* Right Column - Form Container */
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            max-width: 500px;
+            width: 100%;
+            margin-left: auto;
+        }
+
+        /* Form Header */
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Credit Badge */
+        .credit-display {
+            background: var(--bg-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .credit-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .credit-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        /* Progress Dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 32px;
+            border-radius: 4px;
+            background: var(--brand-blue);
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        input.error, select.error {
+            border-color: var(--error);
+        }
+
+        .error-text {
+            font-size: 0.75rem;
+            color: var(--error);
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--brand-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1476A8;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        .form-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Condition Cards */
+        .condition-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .condition-card {
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .condition-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .condition-card.selected {
+            border-color: var(--primary);
+            background: var(--bg-gray);
+        }
+
+        .condition-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .condition-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .condition-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Photo Upload */
+        .photo-upload {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-gray);
+        }
+
+        .photo-upload:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .photo-upload.dragover {
+            border-color: var(--brand-blue);
+            background: rgba(27, 156, 216, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .upload-text {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-gray);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .photo-item:hover .photo-remove {
+            opacity: 1;
+        }
+
+        /* Results */
+        .result-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .result-credit {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--success);
+            margin: 1rem 0;
+        }
+
+        .result-code {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .result-code:hover {
+            transform: scale(1.05);
+        }
+
+        /* Features Row */
+        .features-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Messages */
+        .message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            animation: slideIn 0.3s ease;
+            z-index: 1001;
+            max-width: 400px;
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .message.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .message.error {
+            border-left: 4px solid var(--error);
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .form-container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .value-props {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 100px 1rem 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .condition-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+
+        /* Micro-animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Focus states for accessibility */
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--brand-blue);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Messages -->
+    <div class="message success" id="successMessage">
+        <strong>Success!</strong> <span class="message-text"></span>
+    </div>
+    <div class="message error" id="errorMessage">
+        <strong>Error!</strong> <span class="message-text"></span>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+                    <p class="loading-text">Our experts are evaluating your mattress...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="https://mattressstoreslosangeles.com" class="logo">
+                <div class="logo-mark">
+                    <span class="logo-la">LA</span>
+                </div>
+                <span class="logo-text">MATTRESS</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://mattressstoreslosangeles.com">Home</a>
+                <a href="https://mattressstoreslosangeles.com/collections">Shop</a>
+                <a href="https://mattressstoreslosangeles.com/locations">Locations</a>
+                <a href="tel:+13105551234" class="nav-cta">Call Now</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Left Column -->
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Expert Mattress Evaluation</span>
+                </div>
+                
+                <h1>Turn Your Old Mattress Into Cash</h1>
+                
+                <p class="hero-subtitle">
+                    Get up to $400 instant credit when you trade in your mattress. 
+                    Expert evaluation, free pickup, and eco-friendly disposal.
+                </p>
+
+                <div class="value-props">
+                    <div class="value-item">
+                        <div class="value-number">60</div>
+                        <div class="value-text">Second<br>Evaluation</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">$400</div>
+                        <div class="value-text">Maximum<br>Credit</div>
+                    </div>
+                </div>
+
+                <button class="hero-cta" onclick="scrollToForm()">
+                    Start Your Trade-In →
+                </button>
+
+                <div class="trust-row">
+                    <div class="trust-item">
+                        <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>Free Pickup</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>100% Recycled</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>5 LA Locations</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Form -->
+            <div class="form-container" id="tradeForm">
+                <div class="form-header">
+                    <h2 class="form-title">Get Your Trade-In Credit</h2>
+                    <p class="form-subtitle">Takes only 60 seconds</p>
+                </div>
+
+                <div class="credit-display">
+                    <p class="credit-label">Estimated Credit</p>
+                    <p class="credit-amount" id="creditDisplay">$0 - $400</p>
+                </div>
+
+                <div class="progress-dots">
+                    <span class="dot active" id="dot1"></span>
+                    <span class="dot" id="dot2"></span>
+                    <span class="dot" id="dot3"></span>
+                    <span class="dot" id="dot4"></span>
+                </div>
+
+                <!-- Step 1: Contact Info -->
+                <div class="form-step active" id="step1">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" placeholder="John" required>
+                            <span class="error-text">Required</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                            <span class="error-text">Required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                        <span class="error-text">Please enter a valid email</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" placeholder="(310) 555-0123" required>
+                        <span class="error-text">Please enter a valid phone number</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ZIP Code</label>
+                        <input type="text" id="zipcode" placeholder="90001" maxlength="5" required>
+                        <span class="error-text">Please enter a valid ZIP code</span>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+                </div>
+
+                <!-- Step 2: Mattress Info -->
+                <div class="form-step" id="step2">
+                    <div class="form-group">
+                        <label>Mattress Brand</label>
+                        <select id="brand" required onchange="updateEstimate()">
+                            <option value="">Select brand...</option>
+                            <optgroup label="Premium Brands">
+                                <option value="tempur-pedic">Tempur-Pedic</option>
+                                <option value="saatva">Saatva</option>
+                                <option value="avocado">Avocado</option>
+                            </optgroup>
+                            <optgroup label="Popular Brands">
+                                <option value="purple">Purple</option>
+                                <option value="casper">Casper</option>
+                                <option value="nectar">Nectar</option>
+                            </optgroup>
+                            <optgroup label="Traditional">
+                                <option value="sealy">Sealy</option>
+                                <option value="serta">Serta</option>
+                                <option value="beautyrest">Beautyrest</option>
+                            </optgroup>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-text">Please select a brand</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select id="size" required onchange="updateEstimate()">
+                                <option value="">Select...</option>
+                                <option value="twin">Twin</option>
+                                <option value="full">Full</option>
+                                <option value="queen">Queen</option>
+                                <option value="king">King</option>
+                                <option value="cal-king">Cal King</option>
+                            </select>
+                            <span class="error-text">Required</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Age (Years)</label>
+                            <input type="number" id="age" min="0" max="30" placeholder="5" required onchange="updateEstimate()">
+                            <span class="error-text">Required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <div class="condition-grid">
+                            <div class="condition-card" onclick="selectCondition('excellent')">
+                                <div class="condition-icon">✨</div>
+                                <div class="condition-title">Excellent</div>
+                                <div class="condition-desc">Like new</div>
+                            </div>
+                            <div class="condition-card" onclick="selectCondition('good')">
+                                <div class="condition-icon">👍</div>
+                                <div class="condition-title">Good</div>
+                                <div class="condition-desc">Light wear</div>
+                            </div>
+                            <div class="condition-card" onclick="selectCondition('fair')">
+                                <div class="condition-icon">👌</div>
+                                <div class="condition-title">Fair</div>
+                                <div class="condition-desc">Some wear</div>
+                            </div>
+                            <div class="condition-card" onclick="selectCondition('poor')">
+                                <div class="condition-icon">🤔</div>
+                                <div class="condition-title">Poor</div>
+                                <div class="condition-desc">Heavy wear</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="condition" required>
+                        <span class="error-text">Please select condition</span>
+                    </div>
+                    
+                    <div class="form-controls">
+                        <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Photos -->
+                <div class="form-step" id="step3">
+                    <div class="photo-upload" id="photoUpload">
+                        <div class="upload-icon">📸</div>
+                        <p class="upload-text">Upload Photos</p>
+                        <p class="upload-hint">Drag & drop or click to browse</p>
+                        <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="photo-grid" id="photoGrid"></div>
+                    
+                    <p class="text-center mt-2">
+                        <span id="photoCount">0</span>/3 photos minimum
+                    </p>
+                    
+                    <div class="form-controls">
+                        <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn-primary" onclick="evaluateMattress()" id="evaluateBtn" disabled>
+                            Add 3+ Photos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Results -->
+                <div class="form-step" id="step4">
+                    <div class="result-card">
+                        <div class="result-icon">🎉</div>
+                        <h3 class="result-title">Congratulations!</h3>
+                        <p>Your trade-in credit:</p>
+                        <p class="result-credit" id="finalCredit">$0</p>
+                        <div class="result-code" id="resultCode" onclick="copyCode()">XXXX</div>
+                        <p class="text-center mt-1">Click to copy code</p>
+                        
+                        <div class="features-row">
+                            <div class="feature-item">
+                                <div class="feature-icon">🚚</div>
+                                <div class="feature-text">Free Pickup</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">♻️</div>
+                                <div class="feature-text">Eco-Friendly</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📍</div>
+                                <div class="feature-text">5 Locations</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary mt-3" onclick="shopNow()">
+                            Shop New Mattresses →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // State management
+        let currentStep = 1;
+        let uploadedPhotos = [];
+        let selectedCondition = null;
+        let formData = {};
+
+        // API Configuration
+        // Detectar si estamos en desarrollo o producción
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_URL = isDevelopment 
+            ? 'http://localhost:3001' 
+            : 'https://your-production-server.com'; // Cambiar esta URL en producción
+        
+        console.log('🌐 Configuración de API:');
+        console.log('   Ambiente:', isDevelopment ? 'Desarrollo' : 'Producción');
+        console.log('   API URL:', API_URL);
+
+        // Show message
+        function showMessage(type, text) {
+            const msg = document.getElementById(`${type}Message`);
+            msg.querySelector('.message-text').textContent = text;
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 3000);
+        }
+
+        // Scroll to form
+        function scrollToForm() {
+            document.getElementById('tradeForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Navigation
+        function updateProgress() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentStep - 1);
+            });
+        }
+
+        function goToStep(step) {
+            document.querySelector(`.form-step.active`).classList.remove('active');
+            currentStep = step;
+            document.getElementById(`step${step}`).classList.add('active');
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (validateStep()) {
+                // Save form data
+                if (currentStep === 1) {
+                    formData.customer = {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        zipCode: document.getElementById('zipcode').value
+                    };
+                } else if (currentStep === 2) {
+                    formData.mattress = {
+                        brand: document.getElementById('brand').value,
+                        size: document.getElementById('size').value,
+                        age: parseInt(document.getElementById('age').value),
+                        condition: selectedCondition
+                    };
+                }
+                
+                if (currentStep < 4) {
+                    goToStep(currentStep + 1);
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        }
+
+        // Validation
+        function validateStep() {
+            let valid = true;
+            const step = document.getElementById(`step${currentStep}`);
+            
+            step.querySelectorAll('input[required], select[required]').forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    field.nextElementSibling.classList.add('show');
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                    field.nextElementSibling.classList.remove('show');
+                }
+            });
+
+            if (currentStep === 1 && valid) {
+                // Email validation
+                const email = document.getElementById('email');
+                if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                    email.classList.add('error');
+                    email.nextElementSibling.classList.add('show');
+                    valid = false;
+                }
+            }
+
+            if (!valid) {
+                showMessage('error', 'Please fill in all required fields');
+            }
+
+            return valid;
+        }
+
+        // Clear errors on input
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('error')) {
+                e.target.classList.remove('error');
+                e.target.nextElementSibling.classList.remove('show');
+            }
+        });
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+            } else if (value.length >= 3) {
+                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+            }
+            e.target.value = value;
+        });
+
+        // Condition selection
+        function selectCondition(condition) {
+            selectedCondition = condition;
+            document.getElementById('condition').value = condition;
+            
+            document.querySelectorAll('.condition-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            updateEstimate();
+        }
+
+        // Update estimate
+        function updateEstimate() {
+            const brand = document.getElementById('brand').value;
+            const size = document.getElementById('size').value;
+            const age = document.getElementById('age').value;
+            
+            if (brand && size && age && selectedCondition) {
+                const estimate = calculateEstimate(brand, size, age, selectedCondition);
+                document.getElementById('creditDisplay').textContent = `$${estimate.min} - $${estimate.max}`;
+            }
+        }
+
+        function calculateEstimate(brand, size, age, condition) {
+            const baseValues = {
+                'twin': 100,
+                'full': 150,
+                'queen': 200,
+                'king': 250,
+                'cal-king': 270
+            };
+            
+            const brandMultipliers = {
+                'tempur-pedic': 1.5,
+                'saatva': 1.4,
+                'avocado': 1.4,
+                'purple': 1.3,
+                'casper': 1.2,
+                'nectar': 1.1,
+                'sealy': 1.1,
+                'serta': 1.1,
+                'beautyrest': 1.2,
+                'other': 1.0
+            };
+            
+            const conditionMultipliers = {
+                'excellent': 1.0,
+                'good': 0.75,
+                'fair': 0.5,
+                'poor': 0.25
+            };
+            
+            let base = baseValues[size] || 150;
+            base *= brandMultipliers[brand] || 1.0;
+            base *= conditionMultipliers[condition] || 0.5;
+            base *= Math.max(0.2, 1 - (age * 0.1));
+            
+            const min = Math.round(base * 0.9 / 10) * 10;
+            const max = Math.round(base * 1.1 / 10) * 10;
+            
+            return {
+                min: Math.max(50, min),
+                max: Math.min(400, max)
+            };
+        }
+
+        // Photo upload
+        const photoUpload = document.getElementById('photoUpload');
+        const photoInput = document.getElementById('photoInput');
+
+        photoUpload.addEventListener('click', () => photoInput.click());
+        
+        photoInput.addEventListener('change', handleFiles);
+        
+        // Drag and drop
+        photoUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            photoUpload.classList.add('dragover');
+        });
+
+        photoUpload.addEventListener('dragleave', () => {
+            photoUpload.classList.remove('dragover');
+        });
+
+        photoUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            photoUpload.classList.remove('dragover');
+            handleFiles({ target: { files: e.dataTransfer.files } });
+        });
+
+        function handleFiles(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/') && uploadedPhotos.length < 8) {
+                    uploadedPhotos.push(file);
+                    displayPhoto(file);
+                }
+            });
+            
+            updatePhotoCount();
+        }
+
+        function displayPhoto(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const div = document.createElement('div');
+                div.className = 'photo-item';
+                div.innerHTML = `
+                    <img src="${e.target.result}" alt="Mattress photo">
+                    <button class="photo-remove" onclick="removePhoto(this, '${file.name}')">×</button>
+                `;
+                document.getElementById('photoGrid').appendChild(div);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removePhoto(btn, fileName) {
+            uploadedPhotos = uploadedPhotos.filter(f => f.name !== fileName);
+            btn.parentElement.remove();
+            updatePhotoCount();
+        }
+
+        function updatePhotoCount() {
+            const count = uploadedPhotos.length;
+            document.getElementById('photoCount').textContent = count;
+            
+            const btn = document.getElementById('evaluateBtn');
+            if (count >= 3) {
+                btn.disabled = false;
+                btn.textContent = 'Get Your Credit';
+            } else {
+                btn.disabled = true;
+                btn.textContent = `Add ${3 - count} More Photo${3 - count > 1 ? 's' : ''}`;
+            }
+        }
+
+        // Evaluate
+        async function evaluateMattress() {
+            if (uploadedPhotos.length < 3) {
+                showMessage('error', 'Please upload at least 3 photos');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            
+            // Calculate credit
+            const estimate = calculateEstimate(
+                formData.mattress.brand,
+                formData.mattress.size,
+                formData.mattress.age,
+                formData.mattress.condition
+            );
+            const credit = Math.round((estimate.min + estimate.max) / 2 / 10) * 10;
+            
+            // IMPORTANTE: No enviamos las fotos reales para evitar el error "request entity too large"
+            // Las fotos son solo para engagement del cliente, no se procesan en el servidor
+            // Enviamos fotos simuladas pequeñas (1x1 pixel transparente)
+            const photos = [
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
+            ];
+            
+            try {
+                // Log para debugging
+                console.log('Enviando evaluación al webhook...');
+                console.log('URL:', `${API_URL}/api/webhooks/trade-evaluation`);
+                console.log('Datos:', {
+                    customer: formData.customer,
+                    mattress: formData.mattress,
+                    credit: credit
+                });
+                
+                // Send to webhook
+                const response = await fetch(`${API_URL}/api/webhooks/trade-evaluation`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        customer: formData.customer,
+                        mattress: formData.mattress,
+                        credit: credit,
+                        photos: photos
+                    })
+                });
+                
+                console.log('Respuesta del servidor:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error del servidor:', errorText);
+                    throw new Error(`Error ${response.status}: ${errorText || 'Error processing evaluation'}`);
+                }
+                
+                const result = await response.json();
+                console.log('Resultado:', result);
+                
+                if (result.success) {
+                    // Update UI with results
+                    document.getElementById('finalCredit').textContent = `$${result.data.credit}`;
+                    document.getElementById('resultCode').textContent = result.data.couponCode;
+                    
+                    // Hide loading and show results
+                    document.getElementById('loading').classList.remove('active');
+                    goToStep(4);
+                    
+                    showMessage('success', 'Evaluation complete! Your coupon has been created.');
+                } else {
+                    throw new Error(result.error || 'Error creating coupon');
+                }
+                
+            } catch (error) {
+                console.error('Error completo:', error);
+                document.getElementById('loading').classList.remove('active');
+                
+                // Manejo específico de errores
+                let errorMessage = 'Error processing evaluation. Please try again.';
+                
+                if (error.message.includes('Failed to fetch')) {
+                    errorMessage = 'Cannot connect to server. Make sure the server is running (npm run dev).';
+                } else if (error.message.includes('404')) {
+                    errorMessage = 'Webhook endpoint not found. Check server configuration.';
+                } else if (error.message.includes('500')) {
+                    errorMessage = 'Server error. Check Shopify credentials and server logs.';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+                
+                showMessage('error', errorMessage);
+                
+                // Mostrar ayuda adicional en la consola
+                console.error('\n🔥 Troubleshooting:');
+                console.error('1. Make sure the server is running: npm run dev');
+                console.error('2. Check that the server is on port 3001');
+                console.error('3. Look for errors in the server console');
+                console.error('4. Verify Shopify credentials in db.json');
+            }
+        }
+
+        function generateCode() {
+            return 'LA-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        }
+
+        function copyCode() {
+            const code = document.getElementById('resultCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                showMessage('success', 'Code copied!');
+            });
+        }
+
+        function shopNow() {
+            window.location.href = 'https://mattressstoreslosangeles.com/collections';
+        }
+
+        // Mobile menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+        
+        // Verificar conexión con el servidor al cargar
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    console.log('✅ Servidor conectado correctamente en puerto 3001');
+                } else {
+                    console.warn('⚠️ Servidor respondiendo pero con estado inesperado');
+                }
+            } catch (error) {
+                console.error('❌ No se puede conectar con el servidor');
+                console.error('Asegúrate de ejecutar: npm run dev');
+                console.error('El servidor debe estar corriendo en http://localhost:3001');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sleep-plus-admin:
+    build: .
+    ports:
+      - "3001:3001"  # Backend
+      - "5173:5173"  # Frontend
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - VITE_API_URL=http://localhost:3001
+    volumes:
+      - ./db.json:/app/db.json  # Persist database
+    restart: unless-stopped
