@@ -1,0 +1,33 @@
+# Frontend Dockerfile - Solo React/Vite
+FROM node:18-alpine as builder
+
+WORKDIR /app
+
+# Copiar archivos de configuración
+COPY package*.json ./
+
+# Instalar todas las dependencias para el build
+RUN npm ci
+
+# Copiar el código fuente
+COPY . .
+
+# Build de producción
+RUN npm run build
+
+# Etapa de producción
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Instalar un servidor HTTP simple
+RUN npm install -g serve
+
+# Copiar los archivos buildados
+COPY --from=builder /app/dist ./dist
+
+# Puerto del frontend
+EXPOSE 5173
+
+# Comando para servir el frontend
+CMD ["serve", "-s", "dist", "-l", "5173"]

@@ -1,0 +1,27 @@
+# Backend Dockerfile - Solo API con JSON-Server
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copiar archivos de configuración
+COPY package*.json ./
+
+# Instalar solo las dependencias necesarias para el backend
+RUN npm install express json-server cors dotenv
+
+# Copiar el servidor y la base de datos
+COPY server/backend-only.js ./server.js
+COPY db.json ./
+
+# Crear directorio para datos persistentes
+RUN mkdir -p /app/data
+
+# Puerto del backend
+EXPOSE 3001
+
+# Variables de entorno por defecto
+ENV NODE_ENV=production
+ENV PORT=3001
+
+# Comando para iniciar solo el backend
+CMD ["node", "server.js"]

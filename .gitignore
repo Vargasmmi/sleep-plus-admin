@@ -61,3 +61,6 @@ reporte-*.txt
 
 # Keep example files
 !.env.example
+
+# Private credentials
+PRIVATE_TOKENS.txt
