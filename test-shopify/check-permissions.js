@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // Configuración
 const SHOPIFY_DOMAIN = 'la-mattress.myshopify.com';
-const ACCESS_TOKEN = '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';
+const ACCESS_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN || 'YOUR_ACCESS_TOKEN_HERE';
 
 async function checkPermissions() {
   console.log('🔍 Checking Shopify API Permissions...\n');

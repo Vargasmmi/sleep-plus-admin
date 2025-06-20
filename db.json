@@ -1979,7 +1979,7 @@
       "shopifyDomain": "la-mattress.myshopify.com",
       "apiKey": "9e4750922a98ea71d540b5212121a130",
       "apiSecretKey": "0616e3d4d89e2ea1c3464636c024e6b8",
-      "accessToken": "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",
+      "accessToken": "YOUR_SHOPIFY_ACCESS_TOKEN",
       "webhookApiVersion": "2024-01",
       "isActive": true,
       "lastSync": "2025-06-12T20:19:22.000Z",
@@ -18746,7 +18746,7 @@
     {
       "id": "stripe-config-001",
       "publicKey": "pk_test_51RZmhs4Kt6qUQyOJNiN3CiMXiIIR4ANetpb0YjP6dkSvaptntY7k6NCdz4evxmVenfgncm8U0CSgPI0OojkPpVfK00Jp95UIbL",
-      "secretKey": "sk_test_51RZmhs4Kt6qUQyOJZVzjadjU2kROL3QrIi1aEtPxWlaEpxF0oHHlBQtEqUJWS7VNI8lqn8Y1Itt5AU7IGWGgvaYm00jKiVqxCE",
+      "secretKey": "YOUR_STRIPE_SECRET_KEY",
       "webhookSecret": "",
       "currency": "USD",
       "testMode": true,

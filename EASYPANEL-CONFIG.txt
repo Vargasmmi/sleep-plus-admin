@@ -1,0 +1,42 @@
+# Configuración Específica para EasyPanel - Sleep+ Admin
+
+## Tu repositorio: https://github.com/Vargasmmi/sleep-plus-admin.git
+
+## Copiar/Pegar en EasyPanel:
+
+### Build Command:
+```
+npm ci && npm run build
+```
+
+### Start Command:
+```
+node server/production-server.js
+```
+
+### Port:
+```
+5173
+```
+
+### Environment Variables (copia todo el bloque):
+```
+NODE_ENV=production
+PORT=3001
+FRONTEND_PORT=5173
+VITE_API_URL=https://sleep-plus-admin-TUPROYECTO.easypanel.host
+VITE_APP_NAME=Sleep+ Admin
+VITE_APP_VERSION=1.0.0
+VITE_ENABLE_DEVTOOLS=false
+```
+
+### Volume:
+- Path: `/app/db.json`
+- Size: 1GB
+
+### Health Check:
+- Path: `/health`
+- Port: `3001`
+
+---
+⚠️ IMPORTANTE: Reemplaza "TUPROYECTO" en VITE_API_URL con tu dominio real de EasyPanel
