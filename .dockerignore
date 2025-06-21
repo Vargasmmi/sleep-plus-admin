@@ -8,10 +8,6 @@ yarn-error.log*
 coverage/
 .nyc_output/
 
-# Production builds (para backend)
-dist/
-build/
-
 # Misc
 .DS_Store
 .env.local
@@ -53,11 +49,3 @@ tmp/
 
 # Archivos de configuración local
 .env
-
-# Para el backend, excluir código fuente del frontend
-src/
-public/
-index.html
-
-# Para el frontend, excluir archivos del servidor
-server/backend-only.js
