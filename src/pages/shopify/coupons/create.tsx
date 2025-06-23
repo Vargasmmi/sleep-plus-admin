@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Create, useForm } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber, DatePicker, Switch, Button, message, Row, Col, Card, Spin, Alert, Tag, Space, Typography } from "antd";
 import { TagOutlined, GiftOutlined, PercentageOutlined, DollarOutlined, CalendarOutlined, UserOutlined } from "@ant-design/icons";
@@ -35,7 +35,6 @@ export const ShopifyCouponCreate: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [minimumType, setMinimumType] = useState<'none' | 'minimum_amount' | 'minimum_quantity'>('none');
   const [customerEligibility, setCustomerEligibility] = useState<string>('all');
-  const [selectedCustomers, setSelectedCustomers] = useState<string[]>([]);
   const [appliesTo, setAppliesTo] = useState<string>('all');
 
   // Cargar clientes locales
