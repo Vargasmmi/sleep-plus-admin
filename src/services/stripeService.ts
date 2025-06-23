@@ -7,11 +7,10 @@ import {
   StripeStats,
   CreatePaymentLinkRequest,
   CreatePaymentLinkResponse,
-  StripeConfigResponse,
-  StripeApiResponse
+  StripeConfigResponse
 } from '../interfaces/stripe';
 
-const API_BASE_URL = 'http://localhost:3001/api/stripe';
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/stripe`;
 
 class StripeService {
   
@@ -121,7 +120,7 @@ class StripeService {
       if (filters.customer) params.append('customer', filters.customer);
       if (filters.startingAfter) params.append('startingAfter', filters.startingAfter);
       
-      const response = await axios.get(`http://localhost:3001/api/stripe/subscriptions?${params}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/stripe/subscriptions?${params}`);
       return response.data;
     } catch (error: any) {
       console.error('Error obteniendo suscripciones de Stripe:', error);
@@ -220,4 +219,4 @@ class StripeService {
   }
 }
 
-export default new StripeService(); 
+export default new StripeService();            

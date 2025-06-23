@@ -25,13 +25,13 @@ export const usePermissions = () => {
       
       // Fetch all permissions for this role
       const rolePermissionsResponse = await fetch(
-        `http://localhost:3001/permissions?roleId=role-${identity.role}`
+        `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/permissions?roleId=role-${identity.role}`
       );
       const rolePermissions = await rolePermissionsResponse.json();
 
       // Fetch user-specific overrides
       const overridesResponse = await fetch(
-        `http://localhost:3001/userPermissionOverrides?userId=${identity.id}`
+        `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/userPermissionOverrides?userId=${identity.id}`
       );
       const overridesData = await overridesResponse.json();
 

@@ -47,7 +47,7 @@ const getActivityResource = (resource: string): string => {
 };
 
 export const customDataProvider: DataProvider = {
-  getList: async ({ resource, pagination, filters, sorters }) => {
+  getList: async ({ resource, filters }) => {
     console.log(`Getting list for resource: ${resource}`);
     
     try {
@@ -78,7 +78,7 @@ export const customDataProvider: DataProvider = {
     const response = await axiosInstance.get(`/${resource}/${id}`);
     
     // Log view activity
-    activityLogService.logView(getActivityResource(resource), id, {
+    activityLogService.logView(getActivityResource(resource), String(id), {
       timestamp: new Date().toISOString(),
     });
     
@@ -129,7 +129,7 @@ export const customDataProvider: DataProvider = {
     // Log update activity
     activityLogService.logUpdate(
       getActivityResource(resource),
-      id,
+      String(id),
       variables,
       previousData
     );
@@ -152,7 +152,7 @@ export const customDataProvider: DataProvider = {
     const response = await axiosInstance.delete(`/${resource}/${id}`);
     
     // Log delete activity
-    activityLogService.logDelete(getActivityResource(resource), id, {
+    activityLogService.logDelete(getActivityResource(resource), String(id), {
       deletedData,
       timestamp: new Date().toISOString(),
     });
@@ -219,7 +219,7 @@ export const customDataProvider: DataProvider = {
     };
   },
 
-  custom: async ({ url, method, filters, sorters, payload, query, headers }) => {
+  custom: async ({ url, method, payload, query, headers }) => {
     let requestUrl = `${url}`;
 
     if (query) {

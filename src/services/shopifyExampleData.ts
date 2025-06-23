@@ -97,21 +97,21 @@ export const shopifyCouponExample = {
 export const addShopifyExampleData = async () => {
   try {
     // Agregar producto de ejemplo
-    await fetch('http://localhost:3001/shopifyProducts', {
+    await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/shopifyProducts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(shopifyProductExample)
     });
 
     // Agregar cliente de ejemplo
-    await fetch('http://localhost:3001/shopifyCustomers', {
+    await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/shopifyCustomers`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(shopifyCustomerExample)
     });
 
     // Agregar cupón de ejemplo
-    await fetch('http://localhost:3001/shopifyCoupons', {
+    await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/shopifyCoupons`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(shopifyCouponExample)

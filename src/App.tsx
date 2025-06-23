@@ -1,19 +1,15 @@
-import { Refine, Authenticated } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   notificationProvider,
-  ThemedLayoutV2,
   ErrorComponent,
 } from "@refinedev/antd";
 import routerBindings, {
   DocumentTitleHandler,
-  NavigateToResource,
   UnsavedChangesNotifier,
-  CatchAllNavigate,
 } from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 import { customDataProvider } from "./providers/dataProvider";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App as AntdApp, ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import {
@@ -155,7 +151,7 @@ import {
 // Import Stripe pages
 import StripeManagement from "./pages/StripeManagement";
 
-const API_URL = "http://localhost:3001";
+
 
 function App() {
   return (

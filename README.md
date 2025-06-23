@@ -110,8 +110,10 @@ La aplicación está dockerizada y puede desplegarse en:
 ### Acceso Inicial
 
 - URL: `http://localhost:5173`
-- Usuario: `admin@sleepplus.com`
-- Contraseña: `admin123`
+- Usuario: Configure las credenciales de administrador en las variables de entorno
+- Contraseña: Configure las credenciales de administrador en las variables de entorno
+
+**Nota de Seguridad**: Las credenciales de administrador deben configurarse mediante variables de entorno o un sistema de gestión de usuarios apropiado. No utilice credenciales hardcodeadas en producción.
 
 ### Módulos Principales
 

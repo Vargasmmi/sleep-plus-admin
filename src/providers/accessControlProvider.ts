@@ -40,7 +40,7 @@ const checkPermission = async (
 ): Promise<{ can: boolean; reason?: string }> => {
   try {
     // First check user permission overrides
-    const overridesResponse = await fetch("http://localhost:3001/userPermissionOverrides");
+    const overridesResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/userPermissionOverrides`);
     
     // Check if response is ok and is JSON
     if (!overridesResponse.ok || !overridesResponse.headers.get('content-type')?.includes('application/json')) {
@@ -66,7 +66,7 @@ const checkPermission = async (
     }
 
     // Then check role permissions
-    const permissionsResponse = await fetch("http://localhost:3001/permissions");
+    const permissionsResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/permissions`);
     
     // Check if response is ok and is JSON
     if (!permissionsResponse.ok || !permissionsResponse.headers.get('content-type')?.includes('application/json')) {
@@ -120,7 +120,7 @@ const getDefaultPermission = (
       webhookSettings: ['view', 'edit'],
     };
 
-    if (managerRestricted[resource]?.includes(action)) {
+    if (managerRestricted[resource as keyof typeof managerRestricted]?.includes(action)) {
       return { can: false, reason: "Only administrators can perform this action" };
     }
 
@@ -144,7 +144,7 @@ const getDefaultPermission = (
       achievements: ['list', 'show'],
     };
 
-    if (agentAllowed[resource]?.includes(action)) {
+    if (agentAllowed[resource as keyof typeof agentAllowed]?.includes(action)) {
       return { can: true };
     }
 
@@ -155,7 +155,7 @@ const getDefaultPermission = (
 };
 
 export const accessControlProvider: AccessControlProvider = {
-  can: async ({ resource, action, params }) => {
+  can: async ({ resource, action }) => {
     const auth = localStorage.getItem("auth");
     if (!auth) {
       return { can: false, reason: "You are not authenticated" };
@@ -165,13 +165,13 @@ export const accessControlProvider: AccessControlProvider = {
     const { id: userId, role } = user;
 
     // Check permissions
-    return checkPermission(resource, action, userId, role);
+    return checkPermission(resource || '', action || '', userId || '', role || '');
   },
 };
 
 // Additional helper functions for UI components
 export const canAccessResource = async (resource: string, role: string): Promise<boolean> => {
-  const actions = RESOURCE_ACTIONS[resource] || ['list'];
+  const actions = RESOURCE_ACTIONS[resource as keyof typeof RESOURCE_ACTIONS] || ['list'];
   
   for (const action of actions) {
     const permission = await checkPermission(resource, action, '', role);
@@ -188,7 +188,7 @@ export const getResourcePermissions = async (
   userId: string,
   role: string
 ): Promise<Record<string, boolean>> => {
-  const actions = RESOURCE_ACTIONS[resource] || ['list', 'create', 'edit', 'delete', 'show'];
+  const actions = RESOURCE_ACTIONS[resource as keyof typeof RESOURCE_ACTIONS] || ['list', 'create', 'edit', 'delete', 'show'];
   const permissions: Record<string, boolean> = {};
 
   for (const action of actions) {
