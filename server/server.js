@@ -1183,22 +1183,39 @@ app.get('/api/stripe/stats', async (req, res) => {
     const stats = {
       paymentLinks: {
         total: paymentLinks.length,
-        active: paymentLinks.filter(pl => pl.status === 'active').length,
-        completed: paymentLinks.filter(pl => pl.status === 'completed').length
+        active: 0,
+        completed: 0
       },
       subscriptions: {
         total: subscriptions.length,
-        active: subscriptions.filter(s => s.status === 'active').length,
-        canceled: subscriptions.filter(s => s.status === 'canceled').length
+        active: 0,
+        canceled: 0
       },
       webhooks: {
         total: webhooks.length,
-        processed: webhooks.filter(w => w.processed).length,
-        today: webhooks.filter(w => 
-          new Date(w.createdAt).toDateString() === new Date().toDateString()
-        ).length
+        processed: 0,
+        today: 0
       }
     };
+
+    const todayString = new Date().toDateString();
+
+    paymentLinks.forEach(pl => {
+      if (pl.status === 'active') stats.paymentLinks.active++;
+      else if (pl.status === 'completed') stats.paymentLinks.completed++;
+    });
+
+    subscriptions.forEach(s => {
+      if (s.status === 'active') stats.subscriptions.active++;
+      else if (s.status === 'canceled') stats.subscriptions.canceled++;
+    });
+
+    webhooks.forEach(w => {
+      if (w.processed) stats.webhooks.processed++;
+      if (new Date(w.createdAt).toDateString() === todayString) {
+        stats.webhooks.today++;
+      }
+    });
     
     res.json({
       success: true,
@@ -1435,22 +1452,33 @@ app.get('/api/subscriptions/stats', async (req, res) => {
     
     const stats = {
       total: subscriptions.length,
-      active: subscriptions.filter(s => s.status === 'active').length,
-      paused: subscriptions.filter(s => s.status === 'paused').length,
-      cancelled: subscriptions.filter(s => s.status === 'cancelled').length,
-      withStripe: subscriptions.filter(s => 
-        s.billing?.paymentMethod === 'stripe' &&
-        s.billing?.stripeSubscriptionId
-      ).length,
+      active: 0,
+      paused: 0,
+      cancelled: 0,
+      withStripe: 0,
       revenue: {
-        monthly: subscriptions
-          .filter(s => s.status === 'active' && s.billing?.frequency === 'monthly')
-          .reduce((sum, s) => sum + (s.pricing?.monthly || 0), 0),
-        annual: subscriptions
-          .filter(s => s.status === 'active' && s.billing?.frequency === 'annual')
-          .reduce((sum, s) => sum + (s.pricing?.annual || 0), 0)
+        monthly: 0,
+        annual: 0
       }
     };
+
+    subscriptions.forEach(s => {
+      if (s.status === 'active') stats.active++;
+      else if (s.status === 'paused') stats.paused++;
+      else if (s.status === 'cancelled') stats.cancelled++;
+
+      if (s.billing?.paymentMethod === 'stripe' && s.billing?.stripeSubscriptionId) {
+        stats.withStripe++;
+      }
+
+      if (s.status === 'active') {
+        if (s.billing?.frequency === 'monthly') {
+          stats.revenue.monthly += (s.pricing?.monthly || 0);
+        } else if (s.billing?.frequency === 'annual') {
+          stats.revenue.annual += (s.pricing?.annual || 0);
+        }
+      }
+    });
     
     res.json(stats);
     
