@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ISubscription } from '../interfaces';
 import stripeService from './stripeService';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api`;
 
 class SubscriptionService {
   
@@ -216,4 +216,4 @@ class SubscriptionService {
   }
 }
 
-export default new SubscriptionService(); 
+export default new SubscriptionService();  

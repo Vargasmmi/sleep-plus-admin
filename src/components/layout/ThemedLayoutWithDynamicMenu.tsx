@@ -29,17 +29,17 @@ export const ThemedLayoutWithDynamicMenu: React.FC<{ children: React.ReactNode }
 
           try {
             // First check list permission
-            const listResponse = await fetch(`http://localhost:3001/permissions?roleId=role-${identity.role}&resource=${resource.name}&action=list`);
+            const listResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/permissions?roleId=role-${identity.role}&resource=${resource.name}&action=list`);
             const listPermissions = await listResponse.json();
             const canList = listPermissions[0]?.allowed || false;
 
             // Also check view permission for dashboard-like resources
-            const viewResponse = await fetch(`http://localhost:3001/permissions?roleId=role-${identity.role}&resource=${resource.name}&action=view`);
+            const viewResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/permissions?roleId=role-${identity.role}&resource=${resource.name}&action=view`);
             const viewPermissions = await viewResponse.json();
             const canView = viewPermissions[0]?.allowed || false;
 
             // Check for user-specific overrides
-            const overrideResponse = await fetch(`http://localhost:3001/userPermissionOverrides?userId=${identity.id}`);
+            const overrideResponse = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/userPermissionOverrides?userId=${identity.id}`);
             const overrides = await overrideResponse.json();
             
             let hasOverride = false;

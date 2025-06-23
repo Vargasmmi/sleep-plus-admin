@@ -5,7 +5,7 @@ import { activityLogService } from "../services/activityLogService";
 const API_URL = "";
 
 export const authProvider: AuthProvider = {
-  login: async ({ email, password }) => {
+  login: async ({ email, password }: { email: string; password: string }) => {
     try {
       // In production, this would call your API
       // For demo, we'll accept specific credentials
@@ -124,7 +124,7 @@ export const authProvider: AuthProvider = {
     return null;
   },
 
-  onError: async (error) => {
+  onError: async (error: any) => {
     if (error.response?.status === 401) {
       return {
         logout: true,
