@@ -12,10 +12,14 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware básico
 app.use(cors({
-  origin: '*',
+  origin: [
+    'http://localhost:5173',
+    'https://finanzas-app-f3nu2rkz.devinapps.com',
+    /\.devinapps\.com$/
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Shopify-Access-Token']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Shopify-Access-Token', 'X-Requested-With']
 }));
 // Aumentar límite para manejar imágenes en base64 (aunque ya no las enviamos)
 app.use(express.json({ limit: '10mb' }));
@@ -1975,6 +1979,255 @@ app.get('/api/stripe/subscriptions', async (req, res) => {
       error: 'Error obteniendo suscripciones desde Stripe',
       message: error.message
     });
+  }
+});
+
+// ======================
+// FINANCE API ENDPOINTS
+// ======================
+
+app.get('/api/finance/transactions', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.query.userId || 'demo-user';
+    const transactions = db.transactions.filter(t => t.userId === userId);
+    res.json({ data: transactions, total: transactions.length });
+  } catch (error) {
+    console.error('Error getting transactions:', error);
+    res.status(500).json({ error: 'Failed to get transactions' });
+  }
+});
+
+app.post('/api/finance/transactions', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.body.userId || 'demo-user';
+    const newTransaction = {
+      id: `txn-${Date.now()}`,
+      ...req.body,
+      userId,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    if (!db.transactions) db.transactions = [];
+    db.transactions.push(newTransaction);
+    await writeDatabase(db);
+    
+    res.json({ data: newTransaction });
+  } catch (error) {
+    console.error('Error creating transaction:', error);
+    res.status(500).json({ error: 'Failed to create transaction' });
+  }
+});
+
+app.put('/api/finance/transactions/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const transactionIndex = db.transactions.findIndex(t => t.id === req.params.id);
+    
+    if (transactionIndex === -1) {
+      return res.status(404).json({ error: 'Transaction not found' });
+    }
+    
+    db.transactions[transactionIndex] = {
+      ...db.transactions[transactionIndex],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    
+    await writeDatabase(db);
+    res.json({ data: db.transactions[transactionIndex] });
+  } catch (error) {
+    console.error('Error updating transaction:', error);
+    res.status(500).json({ error: 'Failed to update transaction' });
+  }
+});
+
+app.delete('/api/finance/transactions/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const transactionIndex = db.transactions.findIndex(t => t.id === req.params.id);
+    
+    if (transactionIndex === -1) {
+      return res.status(404).json({ error: 'Transaction not found' });
+    }
+    
+    const deletedTransaction = db.transactions.splice(transactionIndex, 1)[0];
+    await writeDatabase(db);
+    res.json({ data: deletedTransaction });
+  } catch (error) {
+    console.error('Error deleting transaction:', error);
+    res.status(500).json({ error: 'Failed to delete transaction' });
+  }
+});
+
+app.get('/api/finance/cards', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.query.userId || 'demo-user';
+    const cards = db.cards.filter(c => c.userId === userId);
+    res.json({ data: cards, total: cards.length });
+  } catch (error) {
+    console.error('Error getting cards:', error);
+    res.status(500).json({ error: 'Failed to get cards' });
+  }
+});
+
+app.post('/api/finance/cards', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.body.userId || 'demo-user';
+    const newCard = {
+      id: `card-${Date.now()}`,
+      ...req.body,
+      userId,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    if (!db.cards) db.cards = [];
+    db.cards.push(newCard);
+    await writeDatabase(db);
+    
+    res.json({ data: newCard });
+  } catch (error) {
+    console.error('Error creating card:', error);
+    res.status(500).json({ error: 'Failed to create card' });
+  }
+});
+
+app.put('/api/finance/cards/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const cardIndex = db.cards.findIndex(c => c.id === req.params.id);
+    
+    if (cardIndex === -1) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+    
+    db.cards[cardIndex] = {
+      ...db.cards[cardIndex],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    
+    await writeDatabase(db);
+    res.json({ data: db.cards[cardIndex] });
+  } catch (error) {
+    console.error('Error updating card:', error);
+    res.status(500).json({ error: 'Failed to update card' });
+  }
+});
+
+app.delete('/api/finance/cards/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const cardIndex = db.cards.findIndex(c => c.id === req.params.id);
+    
+    if (cardIndex === -1) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+    
+    const deletedCard = db.cards.splice(cardIndex, 1)[0];
+    await writeDatabase(db);
+    res.json({ data: deletedCard });
+  } catch (error) {
+    console.error('Error deleting card:', error);
+    res.status(500).json({ error: 'Failed to delete card' });
+  }
+});
+
+app.get('/api/finance/tasks', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.query.userId || 'demo-user';
+    const tasks = db.financeTasks.filter(t => t.userId === userId);
+    res.json({ data: tasks, total: tasks.length });
+  } catch (error) {
+    console.error('Error getting tasks:', error);
+    res.status(500).json({ error: 'Failed to get tasks' });
+  }
+});
+
+app.post('/api/finance/tasks', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.body.userId || 'demo-user';
+    const newTask = {
+      id: `task-${Date.now()}`,
+      ...req.body,
+      userId,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    if (!db.financeTasks) db.financeTasks = [];
+    db.financeTasks.push(newTask);
+    await writeDatabase(db);
+    
+    res.json({ data: newTask });
+  } catch (error) {
+    console.error('Error creating task:', error);
+    res.status(500).json({ error: 'Failed to create task' });
+  }
+});
+
+app.put('/api/finance/tasks/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const taskIndex = db.financeTasks.findIndex(t => t.id === req.params.id);
+    
+    if (taskIndex === -1) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    
+    db.financeTasks[taskIndex] = {
+      ...db.financeTasks[taskIndex],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    
+    await writeDatabase(db);
+    res.json({ data: db.financeTasks[taskIndex] });
+  } catch (error) {
+    console.error('Error updating task:', error);
+    res.status(500).json({ error: 'Failed to update task' });
+  }
+});
+
+app.delete('/api/finance/tasks/:id', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const taskIndex = db.financeTasks.findIndex(t => t.id === req.params.id);
+    
+    if (taskIndex === -1) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    
+    const deletedTask = db.financeTasks.splice(taskIndex, 1)[0];
+    await writeDatabase(db);
+    res.json({ data: deletedTask });
+  } catch (error) {
+    console.error('Error deleting task:', error);
+    res.status(500).json({ error: 'Failed to delete task' });
+  }
+});
+
+app.get('/api/finance/dashboard', async (req, res) => {
+  try {
+    const db = await readDatabase();
+    const userId = req.query.userId || 'demo-user';
+    const metrics = db.dashboardMetrics.find(m => m.userId === userId);
+    
+    if (!metrics) {
+      return res.status(404).json({ error: 'Dashboard metrics not found' });
+    }
+    
+    res.json({ data: metrics });
+  } catch (error) {
+    console.error('Error getting dashboard metrics:', error);
+    res.status(500).json({ error: 'Failed to get dashboard metrics' });
   }
 });
 

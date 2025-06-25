@@ -18865,5 +18865,192 @@
       "updatedAt": "2024-01-15T00:00:00Z",
       "syncedAt": "2024-01-15T00:00:00Z"
     }
+  ],
+  "transactions": [
+    {
+      "id": "txn-001",
+      "description": "Compra en supermercado",
+      "amount": -85.5,
+      "date": "2024-06-25",
+      "category": "Alimentación",
+      "userId": "demo-user",
+      "createdAt": "2024-06-25T10:30:00Z",
+      "updatedAt": "2024-06-25T10:30:00Z"
+    },
+    {
+      "id": "txn-002",
+      "description": "Salario mensual",
+      "amount": 3500,
+      "date": "2024-06-24",
+      "category": "Ingresos",
+      "userId": "demo-user",
+      "createdAt": "2024-06-24T09:00:00Z",
+      "updatedAt": "2024-06-24T09:00:00Z"
+    },
+    {
+      "id": "txn-003",
+      "description": "Pago de servicios",
+      "amount": -120,
+      "date": "2024-06-23",
+      "category": "Servicios",
+      "userId": "demo-user",
+      "createdAt": "2024-06-23T14:15:00Z",
+      "updatedAt": "2024-06-23T14:15:00Z"
+    },
+    {
+      "id": "txn-004",
+      "description": "Transferencia recibida",
+      "amount": 250,
+      "date": "2024-06-22",
+      "category": "Transferencias",
+      "userId": "demo-user",
+      "createdAt": "2024-06-22T16:45:00Z",
+      "updatedAt": "2024-06-22T16:45:00Z"
+    }
+  ],
+  "cards": [
+    {
+      "id": "card-001",
+      "name": "Tarjeta Principal",
+      "number": "**** **** **** 1234",
+      "balance": 2500,
+      "limit": 5000,
+      "type": "Visa",
+      "userId": "demo-user",
+      "createdAt": "2024-01-15T00:00:00Z",
+      "updatedAt": "2024-06-25T00:00:00Z"
+    },
+    {
+      "id": "card-002",
+      "name": "Tarjeta Empresarial",
+      "number": "**** **** **** 5678",
+      "balance": 1200,
+      "limit": 3000,
+      "type": "Mastercard",
+      "userId": "demo-user",
+      "createdAt": "2024-02-01T00:00:00Z",
+      "updatedAt": "2024-06-25T00:00:00Z"
+    },
+    {
+      "id": "card-003",
+      "name": "Tarjeta de Ahorro",
+      "number": "**** **** **** 9012",
+      "balance": 500,
+      "limit": 1000,
+      "type": "American Express",
+      "userId": "demo-user",
+      "createdAt": "2024-03-10T00:00:00Z",
+      "updatedAt": "2024-06-25T00:00:00Z"
+    }
+  ],
+  "financeTasks": [
+    {
+      "id": "task-001",
+      "title": "Revisar presupuesto mensual",
+      "completed": true,
+      "priority": "alta",
+      "dueDate": "2024-06-30",
+      "userId": "demo-user",
+      "createdAt": "2024-06-20T00:00:00Z",
+      "updatedAt": "2025-06-25T07:11:22.809Z"
+    },
+    {
+      "id": "task-002",
+      "title": "Pagar tarjeta de crédito",
+      "completed": true,
+      "priority": "alta",
+      "dueDate": "2024-06-25",
+      "userId": "demo-user",
+      "createdAt": "2024-06-18T00:00:00Z",
+      "updatedAt": "2024-06-25T00:00:00Z"
+    },
+    {
+      "id": "task-003",
+      "title": "Actualizar metas de ahorro",
+      "completed": false,
+      "priority": "media",
+      "dueDate": "2024-07-01",
+      "userId": "demo-user",
+      "createdAt": "2024-06-22T00:00:00Z",
+      "updatedAt": "2024-06-22T00:00:00Z"
+    },
+    {
+      "id": "task-004",
+      "title": "Revisar inversiones",
+      "completed": false,
+      "priority": "baja",
+      "dueDate": "2024-07-05",
+      "userId": "demo-user",
+      "createdAt": "2024-06-23T00:00:00Z",
+      "updatedAt": "2024-06-23T00:00:00Z"
+    }
+  ],
+  "dashboardMetrics": [
+    {
+      "id": "metrics-001",
+      "userId": "demo-user",
+      "totalBalance": 12450,
+      "monthlyIncome": 3500,
+      "monthlyExpenses": 1250,
+      "goalsCompleted": 3,
+      "totalGoals": 5,
+      "period": "2024-06",
+      "chartData": [
+        {
+          "name": "Ene",
+          "ingresos": 4000,
+          "gastos": 2400
+        },
+        {
+          "name": "Feb",
+          "ingresos": 3000,
+          "gastos": 1398
+        },
+        {
+          "name": "Mar",
+          "ingresos": 2000,
+          "gastos": 9800
+        },
+        {
+          "name": "Abr",
+          "ingresos": 2780,
+          "gastos": 3908
+        },
+        {
+          "name": "May",
+          "ingresos": 1890,
+          "gastos": 4800
+        },
+        {
+          "name": "Jun",
+          "ingresos": 2390,
+          "gastos": 3800
+        }
+      ],
+      "expenseBreakdown": [
+        {
+          "name": "Alimentación",
+          "value": 400,
+          "color": "#8884d8"
+        },
+        {
+          "name": "Transporte",
+          "value": 300,
+          "color": "#82ca9d"
+        },
+        {
+          "name": "Entretenimiento",
+          "value": 200,
+          "color": "#ffc658"
+        },
+        {
+          "name": "Servicios",
+          "value": 100,
+          "color": "#ff7300"
+        }
+      ],
+      "createdAt": "2024-06-01T00:00:00Z",
+      "updatedAt": "2024-06-25T00:00:00Z"
+    }
   ]
 }
